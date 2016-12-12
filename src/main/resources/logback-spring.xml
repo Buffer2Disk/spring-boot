@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--Windows-->
+        <!--<File>H:/springboot-tomcat-tmp/app.log</File>-->
+        <!--Linux-->
+        <File>/home/logback/app.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>rest-demo.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <!--自定义的appender要写在上面，否则找不到资源-->
+    <!--系统默认的appender分别是 CONSOLE 和 FILE ，CONSOLE比较好，可以用系统默认的-->
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<logger name="org.springframework.web" level="TRACE"/>
+	<logger name="org.springboot.sample" level="TRACE" />
+
+	<springProfile name="default">
+		<logger name="org.springboot.sample" level="TRACE" />
+		<logger name="org.springframework.web" level="TRACE"/>
+		<logger name="com.example" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="dailyRollingFileAppender"/>
+            <!--<appender-ref ref="FILE"/>-->
+        </logger>
+	</springProfile>
+
+</configuration>
