@@ -18,6 +18,6 @@ public interface UserMapper {
     List<User> getAllUser();
 
     /*syll 剩余流量，zll 总流量*/
-    @Select("SELECT round((transfer_enable-(u+d))/1073741824,2) as 'syll',round(transfer_enable/1073741824,2) as 'zll',(u + d)/transfer_enable as 'percentage' ,a.* FROM user as a WHERE (u + d)/transfer_enable > 0.4 AND DATE(CURRENT_DATE()) < expire order by percentage desc")
-    List<Map> getTransferLimitUser();
+    @Select("SELECT round((transfer_enable-(u+d))/1073741824,2) as 'syll',round(transfer_enable/1073741824,2) as 'zll',(u + d)/transfer_enable as 'percentage' ,a.* FROM user as a WHERE (u + d)/transfer_enable > #{flag} AND DATE(CURRENT_DATE()) < expire order by percentage desc")
+    List<Map> getTransferLimitUser(Double flag);
 }

@@ -35,7 +35,7 @@
 	<springProfile name="default">
 		<logger name="org.springboot.sample" level="TRACE" />
 		<logger name="org.springframework.web" level="TRACE"/>
-		<logger name="com.example" level="TRACE" additivity="false">
+		<logger name="com.example" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="dailyRollingFileAppender"/>
             <!--<appender-ref ref="FILE"/>-->

@@ -39,7 +39,9 @@ public class CronService {
     @Scheduled(cron = "0 45 20 * * ?")
     public void getTransferUser() {
         System.out.println("<-----流量超过阀值定时任务执行,时间:"+DateUtils.getDate()+"----->");
-        List<Map> list = userMapper.getTransferLimitUser();
+        String day = (DateUtils.getDate().split("-"))[2];//今天
+        Double flag = 1.0 * Integer.valueOf(day)/30;//超出的比例指标，随着每天时间变化
+        List<Map> list = userMapper.getTransferLimitUser(flag);
 
         List<HashMap> maps = new ArrayList<>();
         for (Map<String,Object> data : list) {
