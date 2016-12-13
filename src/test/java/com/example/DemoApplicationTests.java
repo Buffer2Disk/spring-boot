@@ -32,7 +32,7 @@ public class DemoApplicationTests {
     public void  testUser(){
         /*List<User> list =  userMapper.getAllUser();
         System.out.println(list);*/
-        //cronService.getTransferUser();
+        cronService.getExipreUsingUser();
 
     }
 

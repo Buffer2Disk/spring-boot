@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h2>$!{date}到期仍在使用的用户统计:</h2>
+
+<div>
+    <div>
+        #foreach($item in $!list)
+            </br>
+            <table style="border-collapse:collapse;border:1px solid #f0f0f0;border-width:1px 0 0 1px;width: 1300px;">
+                <tr>
+                    <th style="width:25%;border:1px solid #f0f0f0;border-width:0 1px 1px 0;font-size:14px;
+                        padding:4px;background-color:rgb(250, 250, 250);text-align:center;">
+                        用户名
+                    </th>
+                    <th style="width:25%;border:1px solid #f0f0f0;border-width:0 1px 1px 0;font-size:14px;
+                        padding:4px;background-color:rgb(250, 250, 250);text-align:center;">
+                        用户邮箱
+                    </th>
+                    <th style="width:15%;border:1px solid #f0f0f0;border-width:0 1px 1px 0;font-size:14px;
+                        padding:4px;background-color:rgb(250, 250, 250);text-align:center;">
+                        上次使用的时间
+                    </th>
+                    <th style="width:15%;border:1px solid #f0f0f0;border-width:0 1px 1px 0;font-size:14px;
+                        padding:4px;background-color:rgb(250, 250, 250);text-align:center;">
+                        总流量
+                    </th>
+                    <th style="width:25%;border:1px solid #f0f0f0;border-width:0 1px 1px 0;font-size:14px;
+                        padding:4px;background-color:rgb(250, 250, 250);text-align:center;">
+                        到期时间
+                    </th>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #f0f0f0;border-width:0 1px 1px 0;
+                        padding:5px;text-align:center;font-size:14px;">
+                        $!{item.name}
+                    </td>
+                    <td style="border:1px solid #f0f0f0;border-width:0 1px 1px 0;
+                        padding:5px;text-align:center;font-size:14px;">
+                        $!{item.email}
+                    </td>
+                    <td style="border:1px solid #f0f0f0;border-width:0 1px 1px 0;
+                        padding:5px;text-align:center;font-size:14px;">
+                        $!{item.lastUseTime}
+                    </td>
+                    <td style="border:1px solid #f0f0f0;border-width:0 1px 1px 0;
+                        padding:5px;text-align:center;font-size:14px;">
+                        $!{item.transferEnable}
+                    </td>
+                    <td style="border:1px solid #f0f0f0;border-width:0 1px 1px 0;
+                        padding:5px;text-align:center;font-size:14px;">
+                        $!{item.expire}
+                    </td>
+                </tr>
+            </table>
+            </br>
+
+        #end
+    </div>
+    </br></br></br>
+    本条信息是系统自动发送，请勿回复！
+</div>
+</body>
+
+</html>
