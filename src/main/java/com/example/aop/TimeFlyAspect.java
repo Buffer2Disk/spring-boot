@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Aspect
 @Component
-public class WebLogAspect {
+public class TimeFlyAspect {
     private Logger log  = LoggerFactory.getLogger(getClass());
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
@@ -23,14 +23,15 @@ public class WebLogAspect {
     @Pointcut("@annotation(com.example.annotation.TimeFly)")
     public void webLog(){}
 
-    /*@Before("webLog()")
+    @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable{
         startTime.set(System.currentTimeMillis());
-    }*/
+    }
 
-    @AfterReturning(pointcut = "webLog()",returning = "ret")
-    public void doAfterReturning(Objects ret) throws  Throwable{
-        log.info("SPEND TIME :" + (System.currentTimeMillis()-startTime.get()));
+    //参数是object，别手贱打成了objects
+    @AfterReturning(returning = "ret",pointcut = "webLog()")
+    public void doAfterReturning(Object ret) throws Throwable {
+        log.info("SPEND TIME :" + (1.0*System.currentTimeMillis()-startTime.get()/1000) +" 秒");
     }
 
     /*@Around("webLog()")

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -18,7 +19,6 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/user")
 public class TestController {
     @Autowired
     UserMapper userMapper;
@@ -27,7 +27,7 @@ public class TestController {
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ResponseBody
-    public String view() {
+    public String view(@RequestParam(required = false) String id) {
         /*List<User> users = userMapper.getAllUser();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("users",users);*/
