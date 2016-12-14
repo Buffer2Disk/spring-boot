@@ -85,14 +85,17 @@ public class CronService {
             String lastUseTime = sdf.format(new Date(timestamp));
 
             if (tomorrow.equals(expire)) {
+                DecimalFormat df = new DecimalFormat("#.###");
                 HashMap map = new HashMap();
                 map.put("name", user.getUser_name());
                 map.put("email", user.getEmail());
                 map.put("expire", expire);
                 map.put("lastUseTime", lastUseTime);
+                BigDecimal b1 = new BigDecimal(user.getD().add(user.getU()));
+                BigDecimal gb1 = b1.divide(new BigDecimal(togb));
+                map.put("hasUsed", df.format(gb1));
                 BigDecimal b = new BigDecimal(user.getTransfer_enable());
                 BigDecimal gb = b.divide(new BigDecimal(togb));
-                DecimalFormat df = new DecimalFormat("#.##");
                 map.put("transferEnable", df.format(gb));
                 maps.add(map);
             }
