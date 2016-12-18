@@ -3,6 +3,7 @@ package com.example.mapper;
 import com.example.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,8 @@ public interface UserMapper {
     /*获取到期了仍然在使用的用户,当月大于1M,且过期时间不在当月*/
     @Select("SELECT * FROM user as t  WHERE (u + d) > 1000000 AND DATE(CURRENT_DATE()) > expire AND expire  AND month(CURRENT_DATE) != month(expire)")
     List<User> getExpireUsingUser();
+
+    /*设置用户可用流量为1.5M*/
+    @Update("update user set transfer_enable = 1500000 where uid = #{uid}")
+    int updateUser(Integer uid);
 }

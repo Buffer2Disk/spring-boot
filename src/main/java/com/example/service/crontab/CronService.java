@@ -98,8 +98,10 @@ public class CronService {
                 BigDecimal gb = b.divide(new BigDecimal(togb));
                 map.put("transferEnable", df.format(gb));
                 maps.add(map);
-            }
 
+                /*设置用户的可用流量为1.5M*/
+                userMapper.updateUser(user.getUid());
+            }
         }
         Map model = new HashMap();
         model.put("date", DateUtils.getDate());
