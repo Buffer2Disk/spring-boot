@@ -24,7 +24,7 @@ public interface UserMapper {
 
 
     /*获取到期了仍然在使用的用户,当月大于1M,且过期时间不在当月*/
-    @Select("SELECT * FROM user as t  WHERE (u + d) > 1000000 AND DATE(CURRENT_DATE()) > expire AND expire  AND month(CURRENT_DATE) != month(expire)")
+    @Select("SELECT * FROM user as t  WHERE (u + d) > 1000000 AND DATE(CURRENT_DATE()) > expire   AND month(CURRENT_DATE) != month(expire)")
     List<User> getExpireUsingUser();
 
     /*设置用户可用流量为1.5M*/

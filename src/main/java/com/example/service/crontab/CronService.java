@@ -76,7 +76,8 @@ public class CronService {
         System.out.println("<-----获取明天到期定时任务执行，时间:" + DateUtils.getDate() + "----->");
         List<User> list = userMapper.getAllUser();
         List<HashMap> maps = new ArrayList<>();
-        String tomorrow = DateUtils.getExactDate(+1);
+        Date d = DateUtils.addDay(1,new Date());
+        String tomorrow = DateUtils.formatDate(d,"yyyy-MM-dd");
         for (User user : list) {
             String expire = DateUtils.formatDate(user.getExpire(), "yyyy-MM-dd");
 
