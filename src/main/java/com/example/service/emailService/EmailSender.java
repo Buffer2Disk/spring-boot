@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
+import javax.mail.internet.MimeUtility;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +49,11 @@ public class EmailSender extends EmailClient {
             if (StringUtils.isBlank(subject)) {
                 subject = defaultSubject;
             }
-            email.setSubject(subject);
+            try {
+                email.setSubject(MimeUtility.encodeText(subject,MimeUtility.mimeCharset("gb2312"), null));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             String text = VelocityEngineUtils.mergeTemplateIntoString(
                     EmailSender.getVelocityEngineInstance(), vmfile, "UTF-8", model);
             email.setContent(text, contentType);
