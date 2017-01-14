@@ -21,13 +21,13 @@ import java.util.*;
  * Created by Administrator on 2016/12/11 0011.
  */
 @Configuration
-public class CronService {
+public class CronAccountService {
     @Autowired
     UserMapper userMapper;
     @Autowired
     EmailSender emailSender;
 
-    private static final Logger logger = LoggerFactory.getLogger(CronService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CronAccountService.class);
 
     private Integer tokb = 1024;
     private Integer tomb = 1024 * 1024;
